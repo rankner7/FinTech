@@ -59,6 +59,41 @@ fruits.tail() #-> last 5 rows
 fruits.info() #-> general info about type and size
 fruits.shape #-> attribute that provides tuple (rows, columns)
 
+#*********** Adding to the set ***************
+fruits.append(data)
+
+#********* Removing Duplicates ***************
+fruits.drop_duplicates()
+#assigning "inplace=True" to any operation will force it to occur on the variable without needing to reassign 
+fruits.drop_duplicates(inplace=True)
+#changing the "keep" argument indicates which of the duplicate rows are kept, either first, last, or False (drop all duplicates)
+fruits.drop_duplicates(inplace=True, keep=False)   
+
+#******** Column Operations **************
+fruits.columns #-> outputs column indexes(names)
+#can change column names very easily with dict objects
+fruits.rename(columns={'cucumba': 'cucumber', 'kiwi': 'KIWI'}, inplace=True)
+#can change columns explicitly
+fruits.columns=['cucumber', 'KIWI']
+#making lower case for example:
+fruits.columns=[col.lower() for col in fruits]
+
+#********* NULL Values ****************
+#Can be python type "None" or Numpy type "np.nan"
+fruits.isnull() #-> returns a DataFrame where False indicates NOT NULL and True indicates NULL
+#to get number in each column:
+fruits.isnull().sum()
+#removing nulls:
+fruits.dropna() #-> removes any row with 1 or more nulls
+#removing nulls by column: set axis = 1
+# -> axis points to shape tuple (rows, columns) where rows=0 and columns=1
+fruits.dropna(axis=1) #-> removes any column with 1 or more nulls
+
+
+
+
+
+
 
 
 
