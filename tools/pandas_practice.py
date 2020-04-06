@@ -89,6 +89,29 @@ fruits.dropna() #-> removes any row with 1 or more nulls
 # -> axis points to shape tuple (rows, columns) where rows=0 and columns=1
 fruits.dropna(axis=1) #-> removes any column with 1 or more nulls
 
+#************** Data Operations *******************
+#Selecting a specific column
+cuc = fruits['cucumber']
+#Getting Mean of the column
+cuc.mean()
+#Getting Pretty much all basic statistical information
+fruits.describe()
+#Count Occurances of certain values and output
+fruits.value_counts().head(10)
+#get correlation between variables
+fruits.corr()
+#accessing by row (ONLY A DATAFRAME ATTRIBUTE)
+#locate by name
+var = fruits.loc["example"]
+#locate by index
+var = fruits.iloc[1] #single value 
+var = fruits.iloc[1:4] #for a range [a, b)****
+
+
+
+
+
+
 
 
 
