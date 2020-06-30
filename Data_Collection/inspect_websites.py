@@ -68,6 +68,18 @@ def extract_tables(soup):
 			continue
 	return tables
 
+def extract_links(soup):
+	links = {}
+
+	for link in soup.find_all('a'):
+		url = link.get('href')
+		txt = link.text
+		if url is not(None):
+			links[txt] = url
+	
+	return links
+	
+
 
 while True:
 	url = input("Enter URL to inspect: ")
@@ -76,11 +88,13 @@ while True:
 		soup_obj = make_soup_object(url)
 		p_text = get_paragraph_txt(soup_obj)
 		web_tables = extract_tables(soup_obj)
+		web_links = extract_links(soup_obj)
 
 		num_words = len(p_text.split(' '))
 		num_tables = len(web_tables)
 		print('\tWord Count: %d'%(num_words))
 		print('\tTable Count: %d'%(num_tables))
+		print('\tLink Count: %d'%(len(web_links.keys())))
 
 		print("\n========================= TEXT ==============================")
 		print(p_text)
@@ -88,6 +102,10 @@ while True:
 		print("\n==================== TABLE PREVIEWS =========================")
 		for table in web_tables:
 			print(table)
+		
+		print("\n==================== LINKS =========================")
+		for key in web_links:
+			print(key+": "+web_links[key])
 	
 	else:
 		print("Scrapable: NO")
